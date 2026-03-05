@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bynum Is A Bummer — OR-5 Constituent Accountability</title>
+  <meta name="description" content="Four documented ways Rep. Janelle Bynum has failed progressive voters in Oregon's 5th Congressional District." />
+  <meta property="og:title" content="Bynum Is A Bummer" />
+  <meta property="og:description" content="The votes. The money. The silence. A constituent accountability project for OR-5 Democrats." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Newsreader:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy:       #0b1f3a;
+      --navy-mid:   #122848;
+      --navy-light: #1a3a5c;
+      --blue:       #1a6eb5;
+      --blue-bright:#2f8de0;
+      --red:        #c0150f;
+      --red-bright: #e8231c;
+      --yellow:     #f5c518;
+      --cream:      #f0ebe0;
+      --cream-dim:  #d6cfc0;
+      --muted:      #7a8fa8;
+      --rule:       rgba(255,255,255,0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--cream);
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      border-bottom: 4px solid var(--blue);
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem 3.5rem;
+      position: relative;
+    }
+
+    /* diagonal accent stripe */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 40%;
+      height: 4px;
+      background: var(--red);
+    }
+
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--blue-bright);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 18vw, 11rem);
+      line-height: 0.85;
+      letter-spacing: 0.01em;
+      color: var(--cream);
+    }
+
+    .hero-title .bummer {
+      color: var(--red-bright);
+      display: block;
+    }
+
+    .hero-tagline {
+      margin-top: 2rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      color: var(--cream-dim);
+      max-width: 580px;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .hero-tagline strong {
+      color: var(--cream);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hero-disclaimer {
+      margin-top: 1.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--rule);
+      display: inline-block;
+    }
+
+    /* ── STAT BAR ── */
+    .stat-bar {
+      background: var(--navy-mid);
+      border-bottom: 1px solid var(--rule);
+      padding: 2rem 0;
+      overflow: hidden;
+    }
+
+    .stat-bar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      padding: 0 2rem;
+    }
+
+    .stat-item {
+      background: var(--red);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      line-height: 1;
+      color: #ffffff;
+      display: block;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.82);
+      margin-top: 0.4rem;
+      display: block;
+      line-height: 1.4;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      color: var(--cream-dim);
+      max-width: 680px;
+    }
+
+    .intro p + p { margin-top: 1rem; }
+
+    .intro p strong {
+      color: var(--cream);
+      font-weight: 600;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      padding: 3.5rem 0 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0;
+    }
+
+    .section-header-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      white-space: nowrap;
+    }
+
+    .section-header-line {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── ISSUE CARD ── */
+    .issue {
+      border-bottom: 1px solid var(--rule);
+      padding: 3rem 0;
+    }
+
+    .issue-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      margin-bottom: 1.75rem;
+    }
+
+    .issue-number-badge {
+      background: var(--blue);
+      color: var(--cream);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .issue-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+    }
+
+    .issue-body {
+      padding-left: 72px; /* aligns with headline */
+    }
+
+    .issue-body p {
+      color: var(--cream-dim);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .issue-body p strong { color: var(--cream); font-weight: 600; }
+
+    /* ── EVIDENCE BOX ── */
+    .evidence {
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-light);
+      border-left: 3px solid var(--blue-bright);
+      padding: 1.25rem 1.4rem;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .evidence-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-bright);
+      margin-bottom: 0.6rem;
+    }
+
+    .evidence-content {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .evidence-source {
+      margin-top: 0.75rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+    }
+
+    .evidence-source a { color: var(--muted); text-decoration: underline; }
+
+    /* ── VERDICT ── */
+    .verdict {
+      background: rgba(192, 21, 15, 0.08);
+      border: 1px solid rgba(192, 21, 15, 0.3);
+      border-left: 4px solid var(--red);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .verdict-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .verdict p {
+      font-size: 0.95rem;
+      color: var(--cream);
+      margin: 0 !important;
+    }
+
+    /* ── BIG STAT CALLOUT ── */
+    .big-stat {
+      background: var(--navy-light);
+      border: 1px solid rgba(245, 197, 24, 0.2);
+      padding: 1.5rem 1.75rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .big-stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--yellow);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .big-stat-desc {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      line-height: 1.5;
+    }
+
+    .big-stat-desc strong { color: var(--cream); }
+
+    /* ── DOCUMENT IMAGE ── */
+    .doc-image-wrap {
+      margin: 1.75rem 0;
+      position: relative;
+    }
+
+    .doc-image-wrap img {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      border: 2px solid var(--navy-light);
+      filter: saturate(0.9) contrast(1.05);
+    }
+
+    .doc-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTEXT NOTE ── */
+    .context-note {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--muted);
+      border-top: 1px solid var(--rule);
+      padding-top: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ── FURTHER READING ── */
+    .reading-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .reading-list li {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .reading-list li:last-child { border-bottom: none; }
+
+    .reading-list a {
+      color: var(--blue-bright);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .reading-list a:hover { text-decoration: underline; }
+
+    .reading-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-left: 0.5rem;
+    }
+
+    .reading-desc {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      margin-top: 0.25rem;
+      font-style: italic;
+    }
+
+    /* ── SHARE ── */
+    .share-section {
+      padding: 4rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .share-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+
+    .share-headline span { color: var(--blue-bright); }
+
+    .share-body {
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      margin-bottom: 2rem;
+      max-width: 520px;
+      font-style: italic;
+    }
+
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+
+    .share-btn-x {
+      background: var(--cream);
+      color: var(--navy);
+    }
+
+    .share-btn-x:hover { background: var(--yellow); }
+
+    .share-btn-fb {
+      background: var(--blue);
+      color: var(--cream);
+    }
+
+    .share-btn-fb:hover { background: var(--blue-bright); }
+
+    .share-btn-reddit {
+      background: var(--navy-light);
+      color: var(--cream);
+      border: 1px solid var(--rule);
+    }
+
+    .share-btn-reddit:hover { border-color: var(--blue-bright); color: var(--blue-bright); }
+
+    .copy-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .copy-input {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.6rem 0.9rem;
+      background: var(--navy-mid);
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      width: 280px;
+    }
+
+    .copy-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.1rem;
+      background: var(--blue);
+      color: var(--cream);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .copy-btn:hover { background: var(--blue-bright); }
+
+    .copy-confirm {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--yellow);
+      display: none;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-mid);
+      border-top: 3px solid var(--blue);
+      padding: 2rem;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      line-height: 2;
+    }
+
+    footer a { color: var(--muted); text-decoration: underline; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-inner > * {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-eyebrow  { animation-delay: 0.05s; }
+    .hero-title    { animation-delay: 0.15s; }
+    .hero-tagline  { animation-delay: 0.28s; }
+    .hero-disclaimer { animation-delay: 0.38s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .stat-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .issue-body { padding-left: 0; }
+      .big-stat { flex-direction: column; gap: 0.75rem; }
+      .copy-input { width: 100%; }
+      .doc-image-wrap img { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">OR-5 Constituent Accountability Project · 2026 Primary</p>
+      <h1 class="hero-title">
+        Bynum Is A
+        <span class="bummer">Bummer.</span>
+      </h1>
+      <p class="hero-tagline">
+        We elected Rep. Janelle Bynum to fight — for immigrants, for the climate, for peace, for the Constitution. <strong>On four critical tests, she didn't show up.</strong> Oregon Democrats deserve to know.
+      </p>
+      <span class="hero-disclaimer">&#9632; Independent · Not affiliated with any candidate or campaign</span>
+    </div>
+  </header>
+
+  <!-- ── STAT BAR ── -->
+  <div class="stat-bar">
+    <div class="stat-bar-inner">
+      <div class="stat-item">
+        <span class="stat-number">2×</span>
+        <span class="stat-label">Voted for Laken Riley Act</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">$3.56M</span>
+        <span class="stat-label">AIPAC-aligned money received</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">0</span>
+        <span class="stat-label">OR Dems who also voted yes</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">4</span>
+        <span class="stat-label">Issues. No real answers.</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ── INTRO ── -->
+    <section class="intro">
+      <div class="container">
+        <p>Rep. Janelle Bynum made history in 2024 as Oregon's first Black member of Congress. That matters, and her constituents celebrated it.</p>
+        <p>This site exists because on four defining votes and moments since then, Rep. Bynum has made choices that many of those same constituents believe <strong>betray the values she was elected to represent.</strong> Oregon's Democratic primary voters deserve the full picture before deciding whether she earns another term unchallenged.</p>
+        <p>Every claim here is sourced. Read it, verify it, share it.</p>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <!-- ── ISSUE 1 ── -->
+      <div class="section-header">
+        <span class="section-header-label">Issue No. 1</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <article class="issue">
+        <div class="issue-header">
+          <div class="issue-number-badge">01</div>
+          <h2 class="issue-headline">She Voted for the Laken Riley Act — Twice — Then Wouldn't Answer on ICE</h2>
+        </div>
+        <div class="issue-body">
+          <p>On January 7 and again on January 22, 2025, Rep. Bynum voted yes on the Laken Riley Act. The bill was signed into law. She was <strong>the only Oregon House Democrat to vote yes on final passage.</strong> The state's lone House Republican also voted yes.</p>
+
+          <div class="evidence">
+            <p class="evidence-label">What the Law Actually Does</p>
+            <p class="evidence-content">The Laken Riley Act requires DHS to detain undocumented immigrants arrested for — not convicted of, merely <em>arrested for</em> — theft, shoplifting, or assault. Detention precedes any finding of guilt. States can sue the federal government if it fails to comply.</p>
+            <p class="evidence-source">Source: <a href="https://www.govtrack.us/congress/votes/119-2025/h23" target="_blank" rel="noopener">GovTrack — House Vote #23, Jan. 22, 2025</a></p>
+          </div>
+
+          <p>All four of Bynum's Democratic Oregon colleagues — Bonamici, Dexter, Hoyle, and Salinas — voted no on final passage. Val Hoyle initially voted yes alongside Bynum but flipped before the final vote. <strong>Bynum did not.</strong></p>
+
+          <div class="evidence">
+            <p class="evidence-label">Town Hall — Silverton, April 2025</p>
+            <p class="evidence-content">"This is not fighting. This is not putting your body on the line. This is business as usual." — constituent who left the Silverton town hall early after pressing Bynum on the vote.</p>
+            <p class="evidence-source">Source: <a href="https://www.opb.org/article/2025/04/23/in-rural-oregon-us-rep-janelle-bynum-talks-health-care-business-and-fighting-back/" target="_blank" rel="noopener">OPB, April 23, 2025</a></p>
+          </div>
+
+          <div class="evidence">
+            <p class="evidence-label">Town Hall — Clackamas, January 2026</p>
+            <p class="evidence-content">Nearly 400 constituents packed Camp Withycombe demanding answers on ICE enforcement. Sen. Wyden stated clear support for defunding ICE and redirecting funds to local law enforcement. Rep. Bynum, at the same event, did not give constituents an answer to the same question.</p>
+            <p class="evidence-source">Source: <a href="https://www.koin.com/news/oregon/ice-a-top-concern-during-or-town-hall-co-hosted-by-sen-wyden-and-rep-bynum/" target="_blank" rel="noopener">KOIN 6, January 19, 2026</a></p>
+          </div>
+
+          <div class="verdict">
+            <p class="verdict-label">The Bottom Line</p>
+            <p>Every other Oregon House Democrat found the due process problems with this law disqualifying. Bynum didn't. Months later, when her constituents asked her directly about ICE funding, she declined to answer while her colleague Sen. Wyden took a clear public position at the exact same event.</p>
+          </div>
+
+          <p class="context-note">Bynum's camp argues OR-5 is a swing district. That's a real argument. The question for primary voters is whether ceding ground on constitutional due process is the right trade to make.</p>
+        </div>
+      </article>
+
+      <!-- ── ISSUE 2 ── -->
+      <div class="section-header">
+        <span class="section-header-label">Issue No. 2</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <article class="issue">
+        <div class="issue-header">
+          <div class="issue-number-badge">02</div>
+          <h2 class="issue-headline">She Voted Against California's EV Mandate — With Climate-Skeptic Republicans</h2>
+        </div>
+        <div class="issue-body">
+          <p>In May 2025, Rep. Bynum was among just 35 House Democrats who crossed the aisle to vote with Republicans to block California's requirement that all new cars sold in the state be electric by 2035.</p>
+
+          <div class="evidence">
+            <p class="evidence-label">Why This Hits Oregon Directly</p>
+            <p class="evidence-content">Oregon has adopted California's vehicle emissions standards under the federal Clean Air Act. Voting to invalidate California's EV mandate isn't just about California — it's a vote against the environmental policy framework Oregon has built its own clean energy goals on top of.</p>
+          </div>
+
+          <div class="verdict">
+            <p class="verdict-label">The Bottom Line</p>
+            <p>In the same weeks she was standing at town halls promising to fight Trump's environmental rollbacks, Rep. Bynum voted alongside climate-denying Republicans to gut one of the most important clean energy standards in the country. The contradiction is stark.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- ── ISSUE 3 ── -->
+      <div class="section-header">
+        <span class="section-header-label">Issue No. 3</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <article class="issue">
+        <div class="issue-header">
+          <div class="issue-number-badge">03</div>
+          <h2 class="issue-headline">On Gaza, She Signed With the Pro-Israel Establishment While $3.56M in AIPAC Money Followed Her In</h2>
+        </div>
+        <div class="issue-body">
+          <p>During her 2024 campaign, Bynum called for "an immediate ceasefire" — while stopping well short of calling for any conditions on U.S. military aid to Israel. Once in Congress, her positions tracked closely with the pro-Israel Democratic establishment.</p>
+
+          <div class="evidence">
+            <p class="evidence-label">Campaign Words vs. Congressional Action</p>
+            <p class="evidence-content">"I believe in the safety and security of our democratic ally Israel. I also believe we need to protect innocent Gazans and humanitarian workers. There must be a ceasefire immediately." — Bynum, Oct. 2024</p>
+            <p class="evidence-source">Source: <a href="https://www.opb.org/article/2024/10/18/janelle-bynum-democrat-oregon-5th-congressional-district/" target="_blank" rel="noopener">OPB Candidate Q&A, Oct. 18, 2024</a></p>
+          </div>
+
+          <p>In May 2025, Bynum was one of 41 House Democrats who signed a Democratic Majority for Israel (DMFI) statement focused on hostages and "post-Hamas Gaza" with <strong>no mention of ceasefire and no call to limit weapons transfers.</strong> Oregon's Indivisible groups pushed her to co-sponsor HR 3565, which would limit military aid to Israel. She did not.</p>
+
+          <!-- TrackAIPAC flyer -->
+          <div class="doc-image-wrap">
+            <img src="trackaipac.webp" alt="TrackAIPAC document showing $3,563,367 in pro-Israel lobby spending on Janelle Bynum, sourced from FEC data as of 3/20/25" />
+            <p class="doc-caption">&#9632; Primary source: TrackAIPAC, via fec.gov — dated 3/20/25</p>
+          </div>
+
+          <div class="big-stat">
+            <span class="big-stat-number">$3,563,367</span>
+            <p class="big-stat-desc"><strong>In independent expenditures and campaign donations from the pro-Israel lobby</strong> — more than the entire rest of Oregon's congressional delegation combined, and largely through dark-money channels. This includes spending in her 2024 primary to defeat progressive challenger Jamie McLeod-Skinner.</p>
+          </div>
+
+          <div class="verdict">
+            <p class="verdict-label">The Bottom Line</p>
+            <p>Bynum has condemned Netanyahu and expressed concern for Palestinian civilians. But she hasn't called for conditioning military transfers, signed onto weapons-limit legislation, or broken from DMFI's talking points. The $3.56M in AIPAC-aligned campaign support provides essential context for whose priorities are shaping her positions.</p>
+          </div>
+
+          <p class="context-note">A ceasefire framework between Israel and Hamas took effect in October 2025. This reflects her record during the period when congressional action on military aid was most consequential.</p>
+        </div>
+      </article>
+
+      <!-- ── ISSUE 4 ── -->
+      <div class="section-header">
+        <span class="section-header-label">Issue No. 4</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <article class="issue">
+        <div class="issue-header">
+          <div class="issue-number-badge">04</div>
+          <h2 class="issue-headline">When Congress Could Have Stopped an Unconstitutional War With Iran, She Was Absent</h2>
+        </div>
+        <div class="issue-body">
+          <p>In June 2025, as Israel struck Iran and the Trump administration escalated toward possible direct U.S. military involvement, a bipartisan War Powers Resolution emerged in Congress — co-authored by Rep. Ro Khanna (D-CA) and Rep. Thomas Massie (R-KY). It required a congressional vote before any U.S. military involvement in hostilities with Iran.</p>
+
+          <p>Oregon's Sen. Jeff Merkley and Rep. Val Hoyle publicly backed the resolution. <strong>Rep. Bynum did not sign on.</strong></p>
+
+          <div class="evidence">
+            <p class="evidence-label">What Congress Already Knew</p>
+            <p class="evidence-content">The U.S. intelligence community — including DNI Tulsi Gabbard in March 2025 testimony — assessed that Iran was not building a nuclear weapon. The IAEA confirmed Iran had no plan to do so. The Trump administration was simultaneously floating tactical nuclear options against Iranian facilities.</p>
+            <p class="evidence-source">Source: <a href="https://thehill.com/homenews/house/5354540-us-involvement-iran-house-resolution-bipartisan/" target="_blank" rel="noopener">The Hill, June 2025</a> · <a href="https://kalikovisionpod.substack.com/p/silence-isnt-leadership-why-janelle" target="_blank" rel="noopener">KalikoVision, June 2025</a></p>
+          </div>
+
+          <div class="evidence">
+            <p class="evidence-label">Constituents Calling Her Office Got Nothing</p>
+            <p class="evidence-content">During the week of June 20, 2025, constituents calling Bynum's office about the Iran crisis were told to subscribe to her newsletter. Staff couldn't provide any position on the War Powers Resolution or U.S. military involvement. Her last public statement on the subject had been issued a week prior.</p>
+            <p class="evidence-source">Source: <a href="https://kalikovisionpod.substack.com/p/silence-isnt-leadership-why-janelle" target="_blank" rel="noopener">KalikoVision, June 2025</a></p>
+          </div>
+
+          <div class="verdict">
+            <p class="verdict-label">The Bottom Line</p>
+            <p>The Iraq War cost $3 trillion and 4,400 American lives after Congress failed to assert its constitutional war-making authority. When a bipartisan coalition offered a mechanism to require a congressional vote before any U.S. involvement in war with Iran, Rep. Bynum passed. As tensions with Iran remain unresolved entering 2026, that choice matters more than ever.</p>
+          </div>
+
+          <p class="context-note">Supporting this resolution required no position on Iran's nuclear program or Middle East policy broadly — only agreement that the Constitution, not the president alone, decides when America goes to war.</p>
+        </div>
+      </article>
+
+      <!-- ── FURTHER READING ── -->
+      <div class="section-header" style="margin-top:1rem;">
+        <span class="section-header-label">Further Reading</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <ul class="reading-list" style="padding: 0.5rem 0 3rem;">
+        <li>
+          <a href="https://kalikovisionpod.substack.com/p/im-thinking-about-running-for-congress" target="_blank" rel="noopener">I'm Thinking About Running for Congress...</a>
+          <span class="reading-meta">KalikoVision · May 2025</span>
+          <span class="reading-desc">The constituent case for why the Laken Riley Act vote — and the pattern behind it — demands a primary challenge.</span>
+        </li>
+        <li>
+          <a href="https://kalikovisionpod.substack.com/p/silence-isnt-leadership-why-janelle" target="_blank" rel="noopener">Silence Isn't Leadership — Why Bynum Must Join the Fight Against Trump's War With Iran</a>
+          <span class="reading-meta">KalikoVision · June 2025</span>
+          <span class="reading-desc">On the War Powers Resolution, $3.56M in AIPAC-aligned spending, and what silence signals when the stakes are this high.</span>
+        </li>
+        <li>
+          <a href="https://www.opb.org/article/2025/04/23/in-rural-oregon-us-rep-janelle-bynum-talks-health-care-business-and-fighting-back/" target="_blank" rel="noopener">In Rural Oregon, Rep. Bynum Talks Health Care, Business and Fighting Back</a>
+          <span class="reading-meta">OPB · April 2025</span>
+        </li>
+        <li>
+          <a href="https://readsludge.com/2024/05/06/super-pacs-with-alleged-aipac-ties-intervene-in-oregon-dem-primary/" target="_blank" rel="noopener">Super PACs With Alleged AIPAC Ties Intervene in Oregon Dem Primary</a>
+          <span class="reading-meta">Sludge · May 2024</span>
+        </li>
+      </ul>
+
+      <!-- ── SHARE ── -->
+      <section class="share-section">
+        <h2 class="share-headline">Know an <span>OR-5</span> voter?<br>Send this their way.</h2>
+        <p class="share-body">This site exists to inform — not to tell anyone what to think. If you found it useful, the most powerful thing you can do right now is share it with someone who votes in Oregon's 5th District.</p>
+
+        <div class="share-buttons">
+          <a class="share-btn share-btn-x"
+             href="https://twitter.com/intent/tweet?text=Oregon%27s+Rep.+Bynum+voted+for+the+Laken+Riley+Act+%E2%80%94+the+only+OR+Dem+to+do+so.+Dodged+the+Iran+War+Powers+vote.+Took+%243.56M+from+AIPAC.+Her+full+record%3A&url=https%3A%2F%2Fbynumisabummer.com"
+             target="_blank" rel="noopener">&#10005; Share on X</a>
+          <a class="share-btn share-btn-fb"
+             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbynumisabummer.com"
+             target="_blank" rel="noopener">Share on Facebook</a>
+          <a class="share-btn share-btn-reddit"
+             href="https://www.reddit.com/submit?url=https%3A%2F%2Fbynumisabummer.com&title=Rep.+Bynum%27s+record+on+immigration%2C+Gaza%2C+Iran%2C+and+climate+%E2%80%94+OR-5+constituent+accountability"
+             target="_blank" rel="noopener">Post to Reddit</a>
+        </div>
+
+        <div class="copy-wrap">
+          <input class="copy-input" type="text" value="https://bynumisabummer.com" readonly id="urlInput" />
+          <button class="copy-btn" onclick="copyLink()">Copy Link</button>
+          <span class="copy-confirm" id="copyConfirm">✓ Copied</span>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>Independent constituent accountability project · Not affiliated with any candidate, campaign, or political party</p>
+    <p>All facts sourced · Contact us if you believe anything here is inaccurate</p>
+    <p style="margin-top:0.4rem;">Rep. Bynum's office: <a href="https://bynum.house.gov" target="_blank" rel="noopener">bynum.house.gov</a> &nbsp;·&nbsp; DC: 202-225-5711 &nbsp;·&nbsp; Oregon City: 503-387-8651</p>
+  </footer>
+
+  <script>
+    function copyLink() {
+      const input = document.getElementById('urlInput');
+      input.select();
+      navigator.clipboard.writeText(input.value).then(() => {
+        const c = document.getElementById('copyConfirm');
+        c.style.display = 'inline';
+        setTimeout(() => { c.style.display = 'none'; }, 2500);
+      });
+    }
+  </script>
+
+</body>
+</html>
