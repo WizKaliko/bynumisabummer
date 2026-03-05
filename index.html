@@ -698,6 +698,140 @@
     .hero-tagline  { animation-delay: 0.28s; }
     .hero-disclaimer { animation-delay: 0.38s; }
 
+    /* ── EMAIL POPUP ── */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 15, 30, 0.85);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .popup-overlay.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .popup {
+      background: var(--navy-mid);
+      border: 1px solid var(--navy-light);
+      border-top: 4px solid var(--red);
+      max-width: 520px;
+      width: 100%;
+      padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.35s ease;
+    }
+    .popup-overlay.visible .popup { transform: translateY(0); }
+    .popup-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.2rem 0.4rem;
+      transition: color 0.15s;
+    }
+    .popup-close:hover { color: var(--cream); }
+    .popup-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 0.75rem;
+    }
+    .popup-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .popup-body {
+      font-size: 0.92rem;
+      color: var(--cream-dim);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── EMAIL BANNERS ── */
+    .email-banner {
+      background: var(--navy-mid);
+      border-top: 3px solid var(--red);
+      border-bottom: 1px solid var(--rule);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .email-banner-inner {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .email-banner-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 0.6rem;
+    }
+    .email-banner-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+    }
+    .email-banner-body {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      font-style: italic;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+    .email-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .email-form-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.4rem;
+      background: var(--red);
+      color: var(--cream);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .email-form-btn:hover { background: var(--red-bright); }
+    .email-form-note {
+      width: 100%;
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-top: 0.6rem;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .stat-bar-inner { grid-template-columns: repeat(2, 1fr); }
@@ -710,6 +844,20 @@
   </style>
 </head>
 <body>
+
+  <!-- ── EMAIL POPUP ── -->
+  <div class="popup-overlay" id="emailPopup" role="dialog" aria-modal="true">
+    <div class="popup">
+      <button class="popup-close" onclick="closePopup()" aria-label="Close">&#10005;</button>
+      <p class="popup-eyebrow">&#9632; Stay In The Loop</p>
+      <h2 class="popup-headline">Upset With Rep. Bynum's Lack of Leadership?</h2>
+      <p class="popup-body">Sign up for organizing alerts and updates as the 2026 primary takes shape. No spam — just signal.</p>
+      <a class="email-form-btn" style="width:100%; justify-content:center; font-size:0.85rem; padding:0.9rem;"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSfI5O31giXQGsVxpnSNfHq_pOr-aBhKrLrHHRjhECZCByA31Q/viewform"
+         target="_blank" rel="noopener" onclick="closePopup()">Sign Me Up →</a>
+      <p class="email-form-note" style="margin-top:0.75rem;">Opens in a new tab &nbsp;·&nbsp; We won't share your info</p>
+    </div>
+  </div>
 
   <!-- ── HERO ── -->
   <header class="hero">
@@ -744,6 +892,21 @@
       <div class="stat-item">
         <span class="stat-number">$3.56M</span>
         <span class="stat-label">AIPAC-aligned money received</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EMAIL BANNER (TOP) ── -->
+  <div class="email-banner">
+    <div class="email-banner-inner">
+      <p class="email-banner-eyebrow">&#9632; Take Action</p>
+      <h2 class="email-banner-headline">Upset With Rep. Bynum's Lack of Leadership?</h2>
+      <p class="email-banner-body">Sign up for organizing alerts and updates as the 2026 primary takes shape.</p>
+      <div class="email-form">
+        <a class="email-form-btn"
+           href="https://docs.google.com/forms/d/e/1FAIpQLSfI5O31giXQGsVxpnSNfHq_pOr-aBhKrLrHHRjhECZCByA31Q/viewform"
+           target="_blank" rel="noopener">Sign Up →</a>
+        <p class="email-form-note">Opens in a new tab &nbsp;·&nbsp; We won't share your info</p>
       </div>
     </div>
   </div>
@@ -975,11 +1138,10 @@
           <span class="reading-meta">Sludge · May 2024</span>
         </li>
       </ul>
-      
-<!-- ── EMAIL BANNER (BOTTOM) ── -->
     </div><!-- close container -->
   </main>
 
+  <!-- ── EMAIL BANNER (BOTTOM) ── -->
   <div class="email-banner" style="border-top:1px solid var(--rule); border-bottom:3px solid var(--red);">
     <div class="email-banner-inner">
       <p class="email-banner-eyebrow">&#9632; Don't Miss What's Next</p>
@@ -994,60 +1156,55 @@
     </div>
   </div>
 
-      <!-- ── WHAT CAN I DO ── -->
-      <section class="action-section">
-        <div class="action-section-inner">
-          <p class="action-eyebrow">Take Action</p>
-          <h2 class="action-headline">What Can I Do?</h2>
-          <p class="action-body">After a disastrous first term in Congress, OR-5 voters are left with very little options by way of accountability. Only one person has filed to run against Rep. Bynum and there are no public forums planned for the primary election. As her constituents we are unhappy with her lack of leaderrship in this critical moment in American history and must make our voices heard.</p>
-          <div class="action-items">
-            <div class="action-item">
-              <p class="action-item-number">01</p>
-              <div>
-                <p class="action-item-title">Leave It Blank</p>
-                <p class="action-item-desc">When you write in a protest vote in Oregon, it doesn't just go unnoticed — it goes uncounted entirely. Under Oregon law, individual write-in names are never tallied unless the total write-in count surpasses the vote total of the filed candidate — a threshold that is virtually impossible to meet in any contested race. Your name, your message, your protest: legally discarded. But a blank line leaves a permanent mark. Undervotes are recorded in certified election results, and when thousands of voters complete every other race on their ballot but skip one, that gap becomes a documented, statistically measurable signal that analysts, journalists, and party officials cannot ignore. A coordinated "Leave It Blank" effort doesn't just register dissatisfaction — it proves it, in official data, permanently. You showed up. You voted. You just refused to say yes.</p>
-              </div>
-            </div>
-            <div class="action-item">
-              <p class="action-item-number">02</p>
-              <div>
-                <p class="action-item-title">Vote for Zeva</p>
-                <p class="action-item-desc"><a href="https://www.zevaforcongress.com/" target=" _blank" rel="noopener"> Zeva Rosenbaum</a> isn't just a protest vote — she's a proof of concept. Running without corporate PAC money, refusing AIPAC funding, and centering working-class values in a district where most politicians triangulate toward the middle, Zeva represents what a people-first campaign actually looks like. Even if she doesn't win, every vote she earns is a data point — a documented, certified signal that a meaningful portion of OR-5 wants something different. Primaries are how parties learn what their voters actually believe. Voting for Zeva is how you make sure that lesson gets recorded.</p>
-              </div>
-            </div>
+  <!-- ── WHAT CAN I DO ── -->
+  <section class="action-section">
+    <div class="action-section-inner">
+      <p class="action-eyebrow">Take Action</p>
+      <h2 class="action-headline">What Can I Do?</h2>
+      <p class="action-body">After a disastrous first term in Congress, OR-5 voters are left with very little options by way of accountability. Only one person has filed to run against Rep. Bynum and there are no public forums planned for the primary election. As her constituents we are unhappy with her lack of leaderrship in this critical moment in American history and must make our voices heard.</p>
+      <div class="action-items">
+        <div class="action-item">
+          <p class="action-item-number">01</p>
+          <div>
+            <p class="action-item-title">Leave It Blank</p>
+            <p class="action-item-desc">When you write in a protest vote in Oregon, it doesn't just go unnoticed — it goes uncounted entirely. Under Oregon law, individual write-in names are never tallied unless the total write-in count surpasses the vote total of the filed candidate — a threshold that is virtually impossible to meet in any contested race. Your name, your message, your protest: legally discarded. But a blank line leaves a permanent mark. Undervotes are recorded in certified election results, and when thousands of voters complete every other race on their ballot but skip one, that gap becomes a documented, statistically measurable signal that analysts, journalists, and party officials cannot ignore. A coordinated "Leave It Blank" effort doesn't just register dissatisfaction — it proves it, in official data, permanently. You showed up. You voted. You just refused to say yes.</p>
           </div>
         </div>
-      </section>
-
-      <!-- ── KNOW AN OR-5 VOTER ── -->
-      <section class="action-section action-section--share">
-        <div class="action-section-inner">
-          <p class="action-eyebrow">Spread the Word</p>
-          <h2 class="action-headline">Know an <span class="action-headline-accent">OR-5</span> Voter?<br>Send This Their Way.</h2>
-          <p class="action-body">This site exists to inform — not to tell anyone what to think. If you found it useful, the most powerful thing you can do right now is share it with someone who votes in Oregon's 5th District.</p>
-
-          <div class="share-buttons">
-            <a class="share-btn share-btn-x"
-               href="https://twitter.com/intent/tweet?text=Oregon%27s+Rep.+Bynum+voted+for+the+Laken+Riley+Act+%E2%80%94+the+only+OR+Dem+to+do+so.+Voted+for+Trump%27s+crypto+bill.+Dodged+the+Iran+War+Powers+vote.+Took+%243.56M+from+AIPAC.+Her+full+record%3A&url=https%3A%2F%2Fbynumisabummer.com"
-               target="_blank" rel="noopener">&#10005; Share on X</a>
-            <a class="share-btn share-btn-fb"
-               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbynumisabummer.com"
-               target="_blank" rel="noopener">Share on Facebook</a>
-            <a class="share-btn share-btn-reddit"
-               href="https://www.reddit.com/submit?url=https%3A%2F%2Fbynumisabummer.com&title=Rep.+Bynum%27s+record+on+immigration%2C+Gaza%2C+Iran%2C+climate%2C+and+crypto+%E2%80%94+OR-5+constituent+accountability"
-               target="_blank" rel="noopener">Post to Reddit</a>
-          </div>
-
-          <div class="copy-wrap">
-            <input class="copy-input" type="text" value="https://bynumisabummer.com" readonly id="urlInput" />
-            <button class="copy-btn" onclick="copyLink()">Copy Link</button>
-            <span class="copy-confirm" id="copyConfirm">✓ Copied</span>
+        <div class="action-item">
+          <p class="action-item-number">02</p>
+          <div>
+            <p class="action-item-title">Vote for Zeva</p>
+            <p class="action-item-desc"><a href="https://www.zevaforcongress.com/" target="_blank" rel="noopener">Zeva Rosenbaum</a> isn't just a protest vote — she's a proof of concept. Running without corporate PAC money, refusing AIPAC funding, and centering working-class values in a district where most politicians triangulate toward the middle, Zeva represents what a people-first campaign actually looks like. Even if she doesn't win, every vote she earns is a data point — a documented, certified signal that a meaningful portion of OR-5 wants something different. Primaries are how parties learn what their voters actually believe. Voting for Zeva is how you make sure that lesson gets recorded.</p>
           </div>
         </div>
-      </section>
-
+      </div>
     </div>
-  </main>
+  </section>
+
+  <!-- ── KNOW AN OR-5 VOTER ── -->
+  <section class="action-section action-section--share">
+    <div class="action-section-inner">
+      <p class="action-eyebrow">Spread the Word</p>
+      <h2 class="action-headline">Know an <span class="action-headline-accent">OR-5</span> Voter?<br>Send This Their Way.</h2>
+      <p class="action-body">This site exists to inform — not to tell anyone what to think. If you found it useful, the most powerful thing you can do right now is share it with someone who votes in Oregon's 5th District.</p>
+      <div class="share-buttons">
+        <a class="share-btn share-btn-x"
+           href="https://twitter.com/intent/tweet?text=Oregon%27s+Rep.+Bynum+voted+for+the+Laken+Riley+Act+%E2%80%94+the+only+OR+Dem+to+do+so.+Voted+for+Trump%27s+crypto+bill.+Dodged+the+Iran+War+Powers+vote.+Took+%243.56M+from+AIPAC.+Her+full+record%3A&url=https%3A%2F%2Fbynumisabummer.com"
+           target="_blank" rel="noopener">&#10005; Share on X</a>
+        <a class="share-btn share-btn-fb"
+           href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbynumisabummer.com"
+           target="_blank" rel="noopener">Share on Facebook</a>
+        <a class="share-btn share-btn-reddit"
+           href="https://www.reddit.com/submit?url=https%3A%2F%2Fbynumisabummer.com&title=Rep.+Bynum%27s+record+on+immigration%2C+Gaza%2C+Iran%2C+climate%2C+and+crypto+%E2%80%94+OR-5+constituent+accountability"
+           target="_blank" rel="noopener">Post to Reddit</a>
+      </div>
+      <div class="copy-wrap">
+        <input class="copy-input" type="text" value="https://bynumisabummer.com" readonly id="urlInput" />
+        <button class="copy-btn" onclick="copyLink()">Copy Link</button>
+        <span class="copy-confirm" id="copyConfirm">✓ Copied</span>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <p>Independent constituent accountability project · Not affiliated with any candidate, campaign, or political party</p>
@@ -1065,6 +1222,23 @@
         setTimeout(() => { c.style.display = 'none'; }, 2500);
       });
     }
+
+    // Popup: show after 8 seconds, once per session
+    function closePopup() {
+      document.getElementById('emailPopup').classList.remove('visible');
+      sessionStorage.setItem('popupDismissed', 'true');
+    }
+    if (!sessionStorage.getItem('popupDismissed')) {
+      setTimeout(() => {
+        document.getElementById('emailPopup').classList.add('visible');
+      }, 8000);
+    }
+    document.getElementById('emailPopup').addEventListener('click', function(e) {
+      if (e.target === this) closePopup();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePopup();
+    });
   </script>
 
 </body>
